@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsrf-bf="http://docs.oasis-open.org/wsrf/bf-2" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wsrf/bf-2">
+  <xsd:import schemaLocation="cache/www.w3.org/2005/08/addressing/ws-addr.xsd" namespace="http://www.w3.org/2005/08/addressing"></xsd:import>
+              
+  <xsd:import schemaLocation="cache/www.w3.org/2001/xml.xsd" namespace="http://www.w3.org/XML/1998/namespace">
+    <xsd:annotation>
+      <xsd:documentation>
+        Get access to the xml: attribute groups for xml:lang as declared on 'schema'
+        and 'documentation' below
+      </xsd:documentation> 
+    </xsd:annotation>
+  </xsd:import>
+
+      
+  <xsd:element type="wsrf-bf:BaseFaultType" name="BaseFault"></xsd:element>
+  
+  <xsd:complexType name="BaseFaultType">
+    <xsd:sequence>
+      <xsd:any processContents="lax" namespace="##other" maxOccurs="unbounded" minOccurs="0"></xsd:any>
+      <xsd:element type="xsd:dateTime" maxOccurs="1" minOccurs="1" name="Timestamp"></xsd:element>
+      <xsd:element type="wsa:EndpointReferenceType" maxOccurs="1" minOccurs="0" name="Originator"></xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="ErrorCode">
+        <xsd:complexType>
+          <xsd:complexContent mixed="true">
+            <xsd:extension base="xsd:anyType">
+              <xsd:attribute type="xsd:anyURI" use="required" name="dialect"></xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>      
+      </xsd:element>
+
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="Description">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute ref="xml:lang" use="optional"></xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="FaultCause">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:any processContents="lax" namespace="##other" maxOccurs="1" minOccurs="1"></xsd:any>
+          </xsd:sequence>
+        </xsd:complexType> 
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:anyAttribute processContents="lax" namespace="##other"></xsd:anyAttribute>
+ </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,7 @@
+Remember that any changes you make to which WSDLs are used needs to be reflected in the build files and in the visual studio project files
+The specific options chosen in the build files all work together, but if any changes need to be made the options are in the gsoap docs
+
+1. build01 
+2. add #import "wsse.h" in the onvif.h and change #import "wsdd10.h" to #import "wsdd.h"
+3. build02
+4. build03

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:dn="http://www.onvif.org/ver10/network/wsdl/" targetNamespace="http://www.onvif.org/ver10/network/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:d="http://schemas.xmlsoap.org/ws/2005/04/discovery">
+  <wsdl:types>
+    <xs:schema xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:dn="http://www.onvif.org/ver10/network/wsdl/" targetNamespace="http://www.onvif.org/ver10/network/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:d="http://schemas.xmlsoap.org/ws/2005/04/discovery">
+      <xs:import schemaLocation="cache/schemas.xmlsoap.org/ws/2005/04/discovery/ws-discovery.xsd" namespace="http://schemas.xmlsoap.org/ws/2005/04/discovery"></xs:import>
+      <xs:import schemaLocation="cache/schemas.xmlsoap.org/ws/2004/08/addressing" namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"></xs:import>
+      
+      
+      <xs:element type="d:HelloType" name="Hello"></xs:element>
+      <xs:element type="d:ResolveType" name="HelloResponse"></xs:element>
+      <xs:element type="d:ProbeType" name="Probe"></xs:element>
+      <xs:element type="d:ProbeMatchesType" name="ProbeResponse"></xs:element>
+      <xs:element type="d:ByeType" name="Bye"></xs:element>
+      <xs:element type="d:ResolveType" name="ByeResponse"></xs:element>
+      
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloRequest">
+    <wsdl:part element="dn:Hello" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="HelloResponse">
+    <wsdl:part element="dn:HelloResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ProbeRequest">
+    <wsdl:part element="dn:Probe" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ProbeResponse">
+    <wsdl:part element="dn:ProbeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ByeRequest">
+    <wsdl:part element="dn:Bye" name="param"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ByeResponse">
+    <wsdl:part element="dn:ByeResponse" name="param"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RemoteDiscoveryPort">
+    <wsdl:operation name="Hello">
+      <wsdl:input message="dn:HelloRequest" dn:Action="http://schemas.xmlsoap.org/ws/2005/04/discovery/Hello"></wsdl:input>
+      <wsdl:output message="dn:HelloResponse" dn:Action="http://schemas.xmlsoap.org/ws/2005/04/discovery/Probe"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bye">
+      <wsdl:input message="dn:ByeRequest" dn:Action="http://schemas.xmlsoap.org/ws/2005/04/discovery/Bye"></wsdl:input>
+      <wsdl:output message="dn:ByeResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DiscoveryLookupPort">
+    <wsdl:operation name="Probe">
+      <wsdl:input message="dn:ProbeRequest" dn:Action="http://schemas.xmlsoap.org/ws/2005/04/discovery/Probe"></wsdl:input>
+      <wsdl:output message="dn:ProbeResponse" dn:Action="http://schemas.xmlsoap.org/ws/2005/04/discovery/ProbeMatches"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding type="dn:RemoteDiscoveryPort" name="RemoteDiscoveryBinding">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="Hello">
+      <soap:operation soapAction="http://www.onvif.org/ver10/network/wsdl/Hello"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bye">
+      <soap:operation soapAction="http://www.onvif.org/ver10/network/wsdl/Bye"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal" parts="param"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="param"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding type="dn:DiscoveryLookupPort" name="DiscoveryLookupBinding">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="Probe">
+      <soap:operation soapAction="http://www.onvif.org/ver10/network/wsdl/Probe"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RemoteDiscoveryService">
+    <wsdl:port binding="dn:RemoteDiscoveryBinding" name="RemoteDiscoveryServicePort">
+      <soap:address location="http://localhost:8000/WebService/RemoteDiscovery"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="DiscoveryLookupService">
+    <wsdl:port binding="dn:DiscoveryLookupBinding" name="DiscoveryLookupPort">
+      <soap:address location="http://localhost:8000/WebService/DiscoveryLookup"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2005/08/addressing" attributeFormDefault="unqualified" elementFormDefault="qualified" blockDefault="#all" finalDefault="" targetNamespace="http://www.w3.org/2005/08/addressing">
+	
+	
+
+	<xs:element type="tns:EndpointReferenceType" name="EndpointReference"></xs:element>
+	<xs:complexType mixed="false" name="EndpointReferenceType">
+		<xs:sequence>
+			<xs:element type="tns:AttributedURIType" name="Address"></xs:element>
+			<xs:element type="tns:ReferenceParametersType" minOccurs="0" name="ReferenceParameters"></xs:element>
+			<xs:element ref="tns:Metadata" minOccurs="0"></xs:element>
+			<xs:any processContents="lax" namespace="##other" maxOccurs="unbounded" minOccurs="0"></xs:any>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+	</xs:complexType>
+	
+	<xs:complexType mixed="false" name="ReferenceParametersType">
+		<xs:sequence>
+			<xs:any processContents="lax" namespace="##any" maxOccurs="unbounded" minOccurs="0"></xs:any>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+	</xs:complexType>
+	
+	<xs:element type="tns:MetadataType" name="Metadata"></xs:element>
+	<xs:complexType mixed="false" name="MetadataType">
+		<xs:sequence>
+			<xs:any processContents="lax" namespace="##any" maxOccurs="unbounded" minOccurs="0"></xs:any>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+	</xs:complexType>
+	
+	<xs:element type="tns:AttributedURIType" name="MessageID"></xs:element>
+	<xs:element type="tns:RelatesToType" name="RelatesTo"></xs:element>
+	<xs:complexType mixed="false" name="RelatesToType">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute type="tns:RelationshipTypeOpenEnum" default="http://www.w3.org/2005/08/addressing/reply" use="optional" name="RelationshipType"></xs:attribute>
+				<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:simpleType name="RelationshipTypeOpenEnum">
+		<xs:union memberTypes="tns:RelationshipType xs:anyURI"></xs:union>
+	</xs:simpleType>
+	
+	<xs:simpleType name="RelationshipType">
+		<xs:restriction base="xs:anyURI">
+			<xs:enumeration value="http://www.w3.org/2005/08/addressing/reply"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:element type="tns:EndpointReferenceType" name="ReplyTo"></xs:element>
+	<xs:element type="tns:EndpointReferenceType" name="From"></xs:element>
+	<xs:element type="tns:EndpointReferenceType" name="FaultTo"></xs:element>
+	<xs:element type="tns:AttributedURIType" name="To"></xs:element>
+	<xs:element type="tns:AttributedURIType" name="Action"></xs:element>
+
+	<xs:complexType mixed="false" name="AttributedURIType">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	
+
+	<xs:attribute type="xs:boolean" name="IsReferenceParameter"></xs:attribute>
+	
+	<xs:simpleType name="FaultCodesOpenEnumType">
+		<xs:union memberTypes="tns:FaultCodesType xs:QName"></xs:union>
+	</xs:simpleType>
+	
+	<xs:simpleType name="FaultCodesType">
+		<xs:restriction base="xs:QName">
+			<xs:enumeration value="tns:InvalidAddressingHeader"></xs:enumeration>
+			<xs:enumeration value="tns:InvalidAddress"></xs:enumeration>
+			<xs:enumeration value="tns:InvalidEPR"></xs:enumeration>
+			<xs:enumeration value="tns:InvalidCardinality"></xs:enumeration>
+			<xs:enumeration value="tns:MissingAddressInEPR"></xs:enumeration>
+			<xs:enumeration value="tns:DuplicateMessageID"></xs:enumeration>
+			<xs:enumeration value="tns:ActionMismatch"></xs:enumeration>
+			<xs:enumeration value="tns:MessageAddressingHeaderRequired"></xs:enumeration>
+			<xs:enumeration value="tns:DestinationUnreachable"></xs:enumeration>
+			<xs:enumeration value="tns:ActionNotSupported"></xs:enumeration>
+			<xs:enumeration value="tns:EndpointUnavailable"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:element type="tns:AttributedUnsignedLongType" name="RetryAfter"></xs:element>
+	<xs:complexType mixed="false" name="AttributedUnsignedLongType">
+		<xs:simpleContent>
+			<xs:extension base="xs:unsignedLong">
+				<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:element type="tns:AttributedQNameType" name="ProblemHeaderQName"></xs:element>
+	<xs:complexType mixed="false" name="AttributedQNameType">
+		<xs:simpleContent>
+			<xs:extension base="xs:QName">
+				<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:element type="tns:AttributedAnyType" name="ProblemHeader"></xs:element>
+	<xs:complexType mixed="false" name="AttributedAnyType">
+		<xs:sequence>
+			<xs:any processContents="lax" namespace="##any" maxOccurs="1" minOccurs="1"></xs:any>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+	</xs:complexType>
+	
+	<xs:element type="tns:AttributedURIType" name="ProblemIRI"></xs:element>
+	
+	<xs:element type="tns:ProblemActionType" name="ProblemAction"></xs:element>
+	<xs:complexType mixed="false" name="ProblemActionType">
+		<xs:sequence>
+			<xs:element ref="tns:Action" minOccurs="0"></xs:element>
+			<xs:element type="xs:anyURI" minOccurs="0" name="SoapAction"></xs:element>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+	</xs:complexType>
+	
+</xs:schema>

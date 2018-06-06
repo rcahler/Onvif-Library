@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.w3.org/2003/05/soap-envelope" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2003/05/soap-envelope">
+
+  <xs:import schemaLocation="cache/www.w3.org/2001/xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"></xs:import>
+
+  
+  <xs:element type="tns:Envelope" name="Envelope"></xs:element>
+  <xs:complexType name="Envelope">
+    <xs:sequence>
+      <xs:element ref="tns:Header" minOccurs="0"></xs:element>
+      <xs:element ref="tns:Body" minOccurs="1"></xs:element>
+    </xs:sequence>
+    <xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+  </xs:complexType>
+
+  <xs:element type="tns:Header" name="Header"></xs:element>
+  <xs:complexType name="Header">
+    <xs:annotation>
+	  <xs:documentation>
+	  Elements replacing the wildcard MUST be namespace qualified, but can be in the targetNamespace
+	  </xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+      <xs:any processContents="lax" namespace="##any" maxOccurs="unbounded" minOccurs="0"></xs:any>
+    </xs:sequence>
+    <xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+  </xs:complexType>
+  
+  <xs:element type="tns:Body" name="Body"></xs:element>
+  <xs:complexType name="Body">
+    <xs:sequence>
+      <xs:any processContents="lax" namespace="##any" maxOccurs="unbounded" minOccurs="0"></xs:any>
+    </xs:sequence>
+    <xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute>
+  </xs:complexType>
+
+  
+  <xs:attribute type="xs:boolean" default="0" name="mustUnderstand"></xs:attribute>
+  <xs:attribute type="xs:boolean" default="0" name="relay"></xs:attribute>
+  <xs:attribute type="xs:anyURI" name="role"></xs:attribute>
+
+  
+
+  <xs:attribute type="xs:anyURI" name="encodingStyle"></xs:attribute>
+
+  <xs:element type="tns:Fault" name="Fault"></xs:element>
+  <xs:complexType final="extension" name="Fault">
+    <xs:annotation>
+	  <xs:documentation>
+	    Fault reporting structure
+	  </xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+      <xs:element type="tns:faultcode" name="Code"></xs:element>
+      <xs:element type="tns:faultreason" name="Reason"></xs:element>
+      <xs:element type="xs:anyURI" minOccurs="0" name="Node"></xs:element>
+	  <xs:element type="xs:anyURI" minOccurs="0" name="Role"></xs:element>
+      <xs:element type="tns:detail" minOccurs="0" name="Detail"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="faultreason">
+    <xs:sequence>
+	  <xs:element type="tns:reasontext" maxOccurs="unbounded" minOccurs="1" name="Text"></xs:element>
+	</xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reasontext">
+    <xs:simpleContent>
+	  <xs:extension base="xs:string">
+	    <xs:attribute ref="xml:lang" use="required"></xs:attribute>
+	  </xs:extension>
+	</xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:complexType name="faultcode">
+    <xs:sequence>
+      <xs:element type="tns:faultcodeEnum" name="Value"></xs:element>
+      <xs:element type="tns:subcode" minOccurs="0" name="Subcode"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="faultcodeEnum">
+    <xs:restriction base="xs:QName">
+      <xs:enumeration value="tns:DataEncodingUnknown"></xs:enumeration>
+      <xs:enumeration value="tns:MustUnderstand"></xs:enumeration>
+      <xs:enumeration value="tns:Receiver"></xs:enumeration>
+      <xs:enumeration value="tns:Sender"></xs:enumeration>
+      <xs:enumeration value="tns:VersionMismatch"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="subcode">
+    <xs:sequence>
+      <xs:element type="xs:QName" name="Value"></xs:element>
+      <xs:element type="tns:subcode" minOccurs="0" name="Subcode"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="detail">
+    <xs:sequence>
+      <xs:any processContents="lax" namespace="##any" maxOccurs="unbounded" minOccurs="0"></xs:any>
+    </xs:sequence>
+    <xs:anyAttribute processContents="lax" namespace="##other"></xs:anyAttribute> 
+  </xs:complexType>
+
+  
+  <xs:element type="tns:NotUnderstoodType" name="NotUnderstood"></xs:element>
+  <xs:complexType name="NotUnderstoodType">
+    <xs:attribute type="xs:QName" use="required" name="qname"></xs:attribute>
+  </xs:complexType>
+
+
+    <xs:complexType name="SupportedEnvType">
+    <xs:attribute type="xs:QName" use="required" name="qname"></xs:attribute>
+  </xs:complexType>
+
+  <xs:element type="tns:UpgradeType" name="Upgrade"></xs:element>
+  <xs:complexType name="UpgradeType">
+    <xs:sequence>
+	  <xs:element type="tns:SupportedEnvType" maxOccurs="unbounded" minOccurs="1" name="SupportedEnvelope"></xs:element>
+	</xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>

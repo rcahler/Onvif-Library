@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsrf-r="http://docs.oasis-open.org/wsrf/r-2" xmlns:wsrf-rw="http://docs.oasis-open.org/wsrf/rw-2" name="WS-Resource" targetNamespace="http://docs.oasis-open.org/wsrf/rw-2">
+  
+
+   <wsdl:types>
+     <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wsrf/rw-2">
+
+       <xsd:import schemaLocation="r-2.xsd" namespace="http://docs.oasis-open.org/wsrf/r-2"></xsd:import> 
+       
+     </xsd:schema>
+   </wsdl:types>
+
+
+  <wsdl:message name="ResourceUnknownFault">
+     <wsdl:part element="wsrf-r:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:part>
+  </wsdl:message> 
+
+  <wsdl:message name="ResourceUnavailableFault">
+     <wsdl:part element="wsrf-r:ResourceUnavailableFault" name="ResourceUnavailableFault"></wsdl:part>
+  </wsdl:message> 
+
+</wsdl:definitions>

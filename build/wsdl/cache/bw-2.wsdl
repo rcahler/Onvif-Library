@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsntw="http://docs.oasis-open.org/wsn/bw-2" xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsrf-rw="http://docs.oasis-open.org/wsrf/rw-2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="WS-BaseNotification" targetNamespace="http://docs.oasis-open.org/wsn/bw-2">
+ 
+ 
+ <wsdl:import namespace="http://docs.oasis-open.org/wsrf/rw-2" location="rw-2.wsdl"></wsdl:import>
+ 
+
+   <wsdl:types>
+     <xsd:schema>
+       <xsd:import schemaLocation="b-2.xsd" namespace="http://docs.oasis-open.org/wsn/b-2"></xsd:import>
+     </xsd:schema>
+   </wsdl:types>
+
+
+  <wsdl:message name="Notify">
+    <wsdl:part element="wsnt:Notify" name="Notify"></wsdl:part>
+  </wsdl:message>
+
+
+   <wsdl:message name="SubscribeRequest">
+     <wsdl:part element="wsnt:Subscribe" name="SubscribeRequest"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="SubscribeResponse">
+      <wsdl:part element="wsnt:SubscribeResponse" name="SubscribeResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="SubscribeCreationFailedFault">
+      <wsdl:part element="wsnt:SubscribeCreationFailedFault" name="SubscribeCreationFailedFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="TopicExpressionDialectUnknownFault">
+      <wsdl:part element="wsnt:TopicExpressionDialectUnknownFault" name="TopicExpressionDialectUnknownFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="InvalidFilterFault">
+      <wsdl:part element="wsnt:InvalidFilterFault" name="InvalidFilterFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="InvalidProducerPropertiesExpressionFault">
+      <wsdl:part element="wsnt:InvalidProducerPropertiesExpressionFault" name="InvalidProducerPropertiesExpressionFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="InvalidMessageContentExpressionFault">
+      <wsdl:part element="wsnt:InvalidMessageContentExpressionFault" name="InvalidMessageContentExpressionFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="UnrecognizedPolicyRequestFault">
+      <wsdl:part element="wsnt:UnrecognizedPolicyRequestFault" name="UnrecognizedPolicyRequestFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="UnsupportedPolicyRequestFault">
+      <wsdl:part element="wsnt:UnsupportedPolicyRequestFault" name="UnsupportedPolicyRequestFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="NotifyMessageNotSupportedFault">
+      <wsdl:part element="wsnt:NotifyMessageNotSupportedFault" name="NotifyMessageNotSupportedFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="UnacceptableInitialTerminationTimeFault">
+      <wsdl:part element="wsnt:UnacceptableInitialTerminationTimeFault" name="UnacceptableInitialTerminationTimeFault"></wsdl:part>
+   </wsdl:message> 
+
+
+   <wsdl:message name="GetCurrentMessageRequest">
+      <wsdl:part element="wsnt:GetCurrentMessage" name="GetCurrentMessageRequest"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="GetCurrentMessageResponse">
+      <wsdl:part element="wsnt:GetCurrentMessageResponse" name="GetCurrentMessageResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="InvalidTopicExpressionFault">
+      <wsdl:part element="wsnt:InvalidTopicExpressionFault" name="InvalidTopicExpressionFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="TopicNotSupportedFault">
+      <wsdl:part element="wsnt:TopicNotSupportedFault" name="TopicNotSupportedFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="MultipleTopicsSpecifiedFault">
+      <wsdl:part element="wsnt:MultipleTopicsSpecifiedFault" name="MultipleTopicsSpecifiedFault"></wsdl:part>
+   </wsdl:message> 
+
+   <wsdl:message name="NoCurrentMessageOnTopicFault">
+      <wsdl:part element="wsnt:NoCurrentMessageOnTopicFault" name="NoCurrentMessageOnTopicFault"></wsdl:part>
+   </wsdl:message> 
+
+
+   <wsdl:message name="GetMessagesRequest">
+      <wsdl:part element="wsnt:GetMessages" name="GetMessagesRequest"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="GetMessagesResponse">
+      <wsdl:part element="wsnt:GetMessagesResponse" name="GetMessagesResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="UnableToGetMessagesFault">
+      <wsdl:part element="wsnt:UnableToGetMessagesFault" name="UnableToGetMessagesFault"></wsdl:part>
+   </wsdl:message> 
+
+
+
+   <wsdl:message name="DestroyPullPointRequest">
+      <wsdl:part element="wsnt:DestroyPullPoint" name="DestroyPullPointRequest"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="DestroyPullPointResponse">
+      <wsdl:part element="wsnt:DestroyPullPointResponse" name="DestroyPullPointResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="UnableToDestroyPullPointFault">
+      <wsdl:part element="wsnt:UnableToDestroyPullPointFault" name="UnableToDestroyPullPointFault"></wsdl:part>
+   </wsdl:message> 
+
+
+   <wsdl:message name="CreatePullPointRequest">
+      <wsdl:part element="wsnt:CreatePullPoint" name="CreatePullPointRequest"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="CreatePullPointResponse">
+      <wsdl:part element="wsnt:CreatePullPointResponse" name="CreatePullPointResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="UnableToCreatePullPointFault">
+      <wsdl:part element="wsnt:UnableToCreatePullPointFault" name="UnableToCreatePullPointFault"></wsdl:part>
+   </wsdl:message> 
+
+
+   <wsdl:message name="RenewRequest">
+      <wsdl:part element="wsnt:Renew" name="RenewRequest"></wsdl:part>
+    </wsdl:message>
+
+   <wsdl:message name="RenewResponse">
+      <wsdl:part element="wsnt:RenewResponse" name="RenewResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="UnacceptableTerminationTimeFault">
+      <wsdl:part element="wsnt:UnacceptableTerminationTimeFault" name="UnacceptableTerminationTimeFault"></wsdl:part>
+   </wsdl:message> 
+
+
+   <wsdl:message name="UnsubscribeRequest">
+      <wsdl:part element="wsnt:Unsubscribe" name="UnsubscribeRequest"></wsdl:part>
+    </wsdl:message>
+
+   <wsdl:message name="UnsubscribeResponse">
+      <wsdl:part element="wsnt:UnsubscribeResponse" name="UnsubscribeResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="UnableToDestroySubscriptionFault">
+      <wsdl:part element="wsnt:UnableToDestroySubscriptionFault" name="UnableToDestroySubscriptionFault"></wsdl:part>
+   </wsdl:message>
+
+
+   <wsdl:message name="PauseSubscriptionRequest">
+      <wsdl:part element="wsnt:PauseSubscription" name="PauseSubscriptionRequest"></wsdl:part>
+    </wsdl:message>
+
+   <wsdl:message name="PauseSubscriptionResponse">
+      <wsdl:part element="wsnt:PauseSubscriptionResponse" name="PauseSubscriptionResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="PauseFailedFault">
+      <wsdl:part element="wsnt:PauseFailedFault" name="PauseFailedFault"></wsdl:part>
+   </wsdl:message> 
+
+
+   <wsdl:message name="ResumeSubscriptionRequest">
+      <wsdl:part element="wsnt:ResumeSubscription" name="ResumeSubscriptionRequest"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="ResumeSubscriptionResponse">
+      <wsdl:part element="wsnt:ResumeSubscriptionResponse" name="ResumeSubscriptionResponse"></wsdl:part>
+   </wsdl:message>
+
+   <wsdl:message name="ResumeFailedFault">
+      <wsdl:part element="wsnt:ResumeFailedFault" name="ResumeFailedFault"></wsdl:part>
+   </wsdl:message> 
+      
+
+
+  <wsdl:portType name="NotificationConsumer">
+    <wsdl:operation name="Notify">
+      <wsdl:input message="wsntw:Notify"></wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  
+
+  <wsdl:portType name="NotificationProducer">
+      <wsdl:operation name="Subscribe">
+         <wsdl:input message="wsntw:SubscribeRequest"></wsdl:input>
+         <wsdl:output message="wsntw:SubscribeResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:InvalidFilterFault" name="InvalidFilterFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:TopicExpressionDialectUnknownFault" name="TopicExpressionDialectUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:InvalidTopicExpressionFault" name="InvalidTopicExpressionFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:TopicNotSupportedFault" name="TopicNotSupportedFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:InvalidProducerPropertiesExpressionFault" name="InvalidProducerPropertiesExpressionFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:InvalidMessageContentExpressionFault" name="InvalidMessageContentExpressionFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnacceptableInitialTerminationTimeFault" name="UnacceptableInitialTerminationTimeFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnrecognizedPolicyRequestFault" name="UnrecognizedPolicyRequestFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnsupportedPolicyRequestFault" name="UnsupportedPolicyRequestFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:NotifyMessageNotSupportedFault" name="NotifyMessageNotSupportedFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:SubscribeCreationFailedFault" name="SubscribeCreationFailedFault"></wsdl:fault>
+      </wsdl:operation>
+
+      <wsdl:operation name="GetCurrentMessage">
+         <wsdl:input message="wsntw:GetCurrentMessageRequest"></wsdl:input>
+         <wsdl:output message="wsntw:GetCurrentMessageResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:TopicExpressionDialectUnknownFault" name="TopicExpressionDialectUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:InvalidTopicExpressionFault" name="InvalidTopicExpressionFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:TopicNotSupportedFault" name="TopicNotSupportedFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:NoCurrentMessageOnTopicFault" name="NoCurrentMessageOnTopicFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:MultipleTopicsSpecifiedFault" name="MultipleTopicsSpecifiedFault"></wsdl:fault>
+      </wsdl:operation>
+   </wsdl:portType>
+
+
+   <wsdl:portType name="PullPoint">
+      <wsdl:operation name="GetMessages">
+         <wsdl:input message="wsntw:GetMessagesRequest" name="GetMessagesRequest"></wsdl:input>
+         <wsdl:output message="wsntw:GetMessagesResponse" name="GetMessagesResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault> 
+         <wsdl:fault message="wsntw:UnableToGetMessagesFault" name="UnableToGetMessagesFault"></wsdl:fault>
+      </wsdl:operation>
+
+      <wsdl:operation name="DestroyPullPoint">
+         <wsdl:input message="wsntw:DestroyPullPointRequest" name="DestroyPullPointRequest"></wsdl:input>
+         <wsdl:output message="wsntw:DestroyPullPointResponse" name="DestroyPullPointResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnableToDestroyPullPointFault" name="UnableToDestroyPullPointFault"></wsdl:fault>
+      </wsdl:operation>
+
+      <wsdl:operation name="Notify">
+         <wsdl:input message="wsntw:Notify"></wsdl:input>
+      </wsdl:operation>
+   </wsdl:portType>
+
+
+   <wsdl:portType name="CreatePullPoint">
+      <wsdl:operation name="CreatePullPoint">
+         <wsdl:input message="wsntw:CreatePullPointRequest" name="CreatePullPointRequest"></wsdl:input>
+         <wsdl:output message="wsntw:CreatePullPointResponse" name="CreatePullPointResponse"></wsdl:output>
+         <wsdl:fault message="wsntw:UnableToCreatePullPointFault" name="UnableToCreatePullPointFault"></wsdl:fault>
+      </wsdl:operation>
+   </wsdl:portType>
+
+
+   <wsdl:portType name="SubscriptionManager">
+      <wsdl:operation name="Renew">
+         <wsdl:input message="wsntw:RenewRequest" name="RenewRequest"></wsdl:input>
+         <wsdl:output message="wsntw:RenewResponse" name="RenewResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnacceptableTerminationTimeFault" name="UnacceptableTerminationTimeFault"></wsdl:fault>     
+      </wsdl:operation>
+      <wsdl:operation name="Unsubscribe">
+         <wsdl:input message="wsntw:UnsubscribeRequest" name="UnsubscribeRequest"></wsdl:input>
+         <wsdl:output message="wsntw:UnsubscribeResponse" name="UnsubscribeResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnableToDestroySubscriptionFault" name="UnableToDestroySubscriptionFault"></wsdl:fault>     
+      </wsdl:operation>
+    </wsdl:portType> 
+
+
+   <wsdl:portType name="PausableSubscriptionManager">
+      
+      <wsdl:operation name="Renew">
+         <wsdl:input message="wsntw:RenewRequest" name="RenewRequest"></wsdl:input>
+         <wsdl:output message="wsntw:RenewResponse" name="RenewResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnacceptableTerminationTimeFault" name="UnacceptableTerminationTimeFault"></wsdl:fault>     
+      </wsdl:operation>
+      <wsdl:operation name="Unsubscribe">
+         <wsdl:input message="wsntw:UnsubscribeRequest" name="UnsubscribeRequest"></wsdl:input>
+         <wsdl:output message="wsntw:UnsubscribeResponse" name="UnsubscribeResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:UnableToDestroySubscriptionFault" name="UnableToDestroySubscriptionFault"></wsdl:fault>     
+      </wsdl:operation>
+
+      
+      <wsdl:operation name="PauseSubscription">
+         <wsdl:input message="wsntw:PauseSubscriptionRequest"></wsdl:input>
+         <wsdl:output message="wsntw:PauseSubscriptionResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:PauseFailedFault" name="PauseFailedFault"></wsdl:fault>        
+      </wsdl:operation>
+      <wsdl:operation name="ResumeSubscription">
+         <wsdl:input message="wsntw:ResumeSubscriptionRequest"></wsdl:input>
+         <wsdl:output message="wsntw:ResumeSubscriptionResponse"></wsdl:output>
+         <wsdl:fault message="wsrf-rw:ResourceUnknownFault" name="ResourceUnknownFault"></wsdl:fault>
+         <wsdl:fault message="wsntw:ResumeFailedFault" name="ResumeFailedFault"></wsdl:fault>        
+      </wsdl:operation>        
+   </wsdl:portType>
+</wsdl:definitions>

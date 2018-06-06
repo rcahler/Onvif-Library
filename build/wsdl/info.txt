@@ -1,0 +1,2 @@
+All of the wsdl files on https://www.onvif.org/profiles/specifications/ as of 6/5/2018
+Edited to point to the correct local files

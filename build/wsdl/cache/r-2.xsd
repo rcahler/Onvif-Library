@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsrf-r="http://docs.oasis-open.org/wsrf/r-2" xmlns:wsrf-bf="http://docs.oasis-open.org/wsrf/bf-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wsrf/r-2">
+ 
+  <xsd:import schemaLocation="bf-2.xsd" namespace="http://docs.oasis-open.org/wsrf/bf-2"></xsd:import>
+
+
+ 
+      <xsd:complexType name="ResourceUnknownFaultType">
+         <xsd:complexContent>
+            <xsd:extension base="wsrf-bf:BaseFaultType"></xsd:extension>
+         </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element type="wsrf-r:ResourceUnknownFaultType" name="ResourceUnknownFault"></xsd:element>
+
+      <xsd:complexType name="ResourceUnavailableFaultType">
+         <xsd:complexContent>
+            <xsd:extension base="wsrf-bf:BaseFaultType"></xsd:extension>
+         </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element type="wsrf-r:ResourceUnavailableFaultType" name="ResourceUnavailableFault"></xsd:element>
+</xsd:schema>
